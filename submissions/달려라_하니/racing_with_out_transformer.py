@@ -202,7 +202,7 @@ class DQN:
         return self._evaluate_loss
 
     def save_model(self, i):
-        torch.save(self.target_network.state_dict(), f'./reverse_catch_weights/model_weights_{i}.pth')
+        torch.save(self.target_network.state_dict(), f'./model_weights_{i}.pth')
 
     def load_model(self, i):
         self.target_network.load_state_dict(torch.load(f'model_weights_{i}.pth', map_location=device))

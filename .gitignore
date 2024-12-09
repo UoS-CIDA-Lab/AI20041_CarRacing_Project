@@ -131,6 +131,7 @@ env.bak/
 venv.bak/
 *.webm
 *.png
+statistics.pkl
 
 # Spyder project settings
 .spyderproject
