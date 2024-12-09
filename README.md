@@ -9,7 +9,7 @@ Term Project Page of UoS AI20041 Reinforcement Learning Course
 |             F1:1024              |    U    |         |
 |             빠르조              |    G    |          |
 |             Y              |    G    |          |
-|             달려라 하니              |    U    |          |
+|             달려라 하니              |    U    | 880.66   |
 |             G1              |    G    |          |
 |             G2              |    G    |          |
 |             U1              |    U    |          |
