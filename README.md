@@ -18,5 +18,4 @@ Term Project Page of UoS AI20041 Reinforcement Learning Course
 |     2    |            TAs                 |   TA    |          |          |          |          |          |
 
 
-## Last updated
-December 10, 2024, 13:37 KST
+Last updated: December 10, 2024, 13:37 KST
