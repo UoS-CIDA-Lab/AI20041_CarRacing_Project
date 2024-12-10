@@ -4,7 +4,7 @@ Term Project Page of UoS AI20041 Reinforcement Learning Course
  
 ### Leaderboard
 
-|         Team                   |  Group  |  Map1  |  Map2  |   Map3  |  Map4  |  Map5  | mean Reward
+|         Team                   |  Group  |  Map1  |  Map2  |   Map3  |  Map4  |  Map5  | mean Reward |
 |:------------------------------:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|
 |             F1:1024              |    U    |         |          |          |          |          |
 |             빠르조              |    G    |          |          |          |          |          |
