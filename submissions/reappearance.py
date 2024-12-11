@@ -7,6 +7,7 @@ from .U1 import DDQN_new_play as U1
 from .U2 import main as U2
 from .G1 import train as G1
 from .G2 import main as G2
+from .김성민 import train as 김성민
 
 @dataclass
 class submission:
@@ -36,13 +37,17 @@ submission_G1 = submission(G1.DQN, "./submissions/G1/model_weights_1000.pth", {
 submission_G2 = submission(G2.DQN, "./submissions/G2/model_weights_3000.pth", {
         })
 
+submission_김성민 = submission(김성민.DQN, "./submissions/김성민/model_weights_1000.pth", {
+        })
+
 dict_reappearance = {
     "달려라하니":submission_달려라하니,
     "F1_1024":submission_F1_1024,
     "U1":submission_U1,
     "U2":submission_U2,
     "G1":submission_G1,
-    "G2":submission_G2
+    "G2":submission_G2,
+    "김성민":submission_김성민,
 }
 
 
