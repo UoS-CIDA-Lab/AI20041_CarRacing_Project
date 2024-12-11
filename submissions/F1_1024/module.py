@@ -223,11 +223,14 @@ class ConstrainedDQN:
         self.steps_done = 0
 
 
-    def select_action(self, state, evaluation=False):
+    def select_action(self, state, evaluation_phase=False):
         eps_threshold = self.eps_end + (self.eps_start - self.eps_end) * math.exp(-1. * self.steps_done / self.eps_decay)
         self.steps_done += 1
 
-        if evaluation or random.random() > eps_threshold:
+        if evaluation_phase:
+            with torch.no_grad():
+                return self.target_network(state).max(1).indices.view(1, 1)
+        elif random.random() > eps_threshold:
             with torch.no_grad():
                 return self.network(state).max(1).indices.view(1, 1)
         else:

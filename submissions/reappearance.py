@@ -2,6 +2,7 @@ from dataclasses import dataclass
 import importlib
 from typing import Any
 from .달려라_하니 import racing_with_out_transformer as 달려라하니
+from .F1_1024 import module as F1_1024
 
 @dataclass
 class submission:
@@ -18,8 +19,12 @@ submission_달려라하니 = submission(달려라하니.DQN, "./submissions/달�
 		"gamma":0.98,            # 감쇠 계수 증가로 보상의 미래 중요성을 조금 더 강조
         "lr":0.001})
 
+submission_F1_1024 = submission(F1_1024.ConstrainedDQN, "./submissions/F1_1024/model_weights_903.pth", F1_1024.ReplayMemory, {
+        "use_constrained_rl":False})
+
 dict_reappearance = {
-    "달려라하니":submission_달려라하니
+    "달려라하니":submission_달려라하니,
+    "F1_1024":submission_F1_1024,
 }
 
 
