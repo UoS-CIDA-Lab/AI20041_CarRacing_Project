@@ -10,7 +10,7 @@ class submission:
     memory: type[object]
     hyperparameters: dict[str, Any]
 
-submission_달려라하니 = submission(달려라하니.DQN, r"submissions\달려라_하니\model_weights_760_Run_HANI.pth", 달려라하니.ReplayMemory, {
+submission_달려라하니 = submission(달려라하니.DQN, "./submissions/달려라_하니/model_weights_760_Run_HANI.pth", 달려라하니.ReplayMemory, {
         "batch_size":64,        # 배치 크기를 32로 설정
 		"eps_start":1.0,        # 탐험 비율을 높게 시작
 		"eps_end":0.1,          # 탐험 비율의 하한값을 조금 높임
@@ -21,4 +21,6 @@ submission_달려라하니 = submission(달려라하니.DQN, r"submissions\달�
 dict_reappearance = {
     "달려라하니":submission_달려라하니
 }
+
+
 
