@@ -4,6 +4,7 @@ from typing import Any
 from .달려라_하니 import racing_with_out_transformer as 달려라하니
 from .F1_1024 import module as F1_1024
 from .U2 import main as U2
+from .G1 import train as G1
 from .G2 import main as G2
 
 @dataclass
@@ -26,6 +27,9 @@ submission_F1_1024 = submission(F1_1024.DQN, "./submissions/F1_1024/model_weight
 submission_U2 = submission(U2.DQN, "./submissions/U2/model_weights_370.pth", {
         })
 
+submission_G1 = submission(G1.DQN, "./submissions/G1/model_weights_1000.pth", {
+        })
+
 submission_G2 = submission(G2.DQN, "./submissions/G2/model_weights_3000.pth", {
         })
 
@@ -33,6 +37,7 @@ dict_reappearance = {
     "달려라하니":submission_달려라하니,
     "F1_1024":submission_F1_1024,
     "U2":submission_U2,
+    "G1":submission_G1,
     "G2":submission_G2
 }
 

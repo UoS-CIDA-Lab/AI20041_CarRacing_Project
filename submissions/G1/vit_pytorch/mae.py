@@ -3,7 +3,7 @@ from torch import nn
 import torch.nn.functional as F
 from einops import repeat
 
-from vit_pytorch.vit import Transformer
+from .vit import Transformer
 
 class MAE(nn.Module):
     def __init__(

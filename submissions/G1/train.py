@@ -19,7 +19,7 @@ import pickle
 from torch.optim.lr_scheduler import StepLR
 from collections import Counter
 
-device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 saved_file = "./saved14"
 os.makedirs(saved_file, exist_ok=True)
 
@@ -58,8 +58,8 @@ class CarEnvironment(gym.Wrapper):
     self.stack_state = np.concatenate((self.stack_state[1:], observation[np.newaxis]), axis=0)
     return self.stack_state, total_reward, terminated, truncated, info
 
-from vit_pytorch import ViT
-from vit_pytorch import SimpleViT
+from .vit_pytorch import ViT
+from .vit_pytorch import SimpleViT
 class Vision_Transformer(SimpleViT):
   def __init__(self, in_channels, out_channels):
     args = {
@@ -232,78 +232,78 @@ class DQN:
   def load_model(self, i):
     self.target_network.load_state_dict(torch.load(f'{saved_file}/model_weights_{i}.pth', map_location=device))
 
-rewards_per_episode = []
-episode_duration = []
-average_episode_loss = []
+# rewards_per_episode = []
+# episode_duration = []
+# average_episode_loss = []
 
-episodes = 1000
-C = 5
+# episodes = 1000
+# C = 5
 
-env = gym.make('CarRacing-v2', lap_complete_percent=0.95, continuous=False)
-n_actions = env.action_space
+# env = gym.make('CarRacing-v2', lap_complete_percent=0.95, continuous=False)
+# n_actions = env.action_space
+# # agent = DQN(n_actions)
 # agent = DQN(n_actions)
-agent = DQN(n_actions)
 
-# 학습 횟수(episode): 한 번의 에피소드는 환경 초기화부터 완료될 때까지의 과정 
-for episode in tqdm(range(1, episodes + 1), desc="training a model..."):
-  env = gym.make('CarRacing-v2', continuous=False)
-  env = CarEnvironment(env)
-  state, info = env.reset()
+# # 학습 횟수(episode): 한 번의 에피소드는 환경 초기화부터 완료될 때까지의 과정 
+# for episode in tqdm(range(1, episodes + 1), desc="training a model..."):
+#   env = gym.make('CarRacing-v2', continuous=False)
+#   env = CarEnvironment(env)
+#   state, info = env.reset()
 
-  state = torch.tensor(state, dtype=torch.float32, device=device).unsqueeze(0)
+#   state = torch.tensor(state, dtype=torch.float32, device=device).unsqueeze(0)
  
-  episode_total_reward = 0 # 총 reward
+#   episode_total_reward = 0 # 총 reward
 
-  #에이전트가 액션을 선택하고, 환경이 새로운 상태와 보상을 반환하며, 종료 조건(done)이 충족될 때까지 계속됩니다.
-  #action_counts = []
-  for t in count():
-    action = agent.select_action(state)
-    # parameter: Continuous([steering, gas, brake]) or Discrete(0, 1, 2, 3, 4) Action Space
-    # observation(Tensor): 관찰값: 96x96x3 크기의 RGB 이미지 배열
-    # reward(Scalar): 보상이 매 프레임마다 -0.1이고, 타일(트랙이 특정 구간마다 타일이 있음)을 방문하면 추가 보상을 얻음
-    # terminated(Bool): 모든 타일을 바로 방문하면 True
-    # truncated(Bool): 최대 에피소드 길이 제한(max_episode_steps)이 초과되어서 강제 종료되어있으면 True -> max_step(env.spec.max_episode_steps)
-    # info(Dict): 환경의 추가 정보
-    observation, reward, terminated, truncated, _ = env.step(action.item())
+#   #에이전트가 액션을 선택하고, 환경이 새로운 상태와 보상을 반환하며, 종료 조건(done)이 충족될 때까지 계속됩니다.
+#   #action_counts = []
+#   for t in count():
+#     action = agent.select_action(state)
+#     # parameter: Continuous([steering, gas, brake]) or Discrete(0, 1, 2, 3, 4) Action Space
+#     # observation(Tensor): 관찰값: 96x96x3 크기의 RGB 이미지 배열
+#     # reward(Scalar): 보상이 매 프레임마다 -0.1이고, 타일(트랙이 특정 구간마다 타일이 있음)을 방문하면 추가 보상을 얻음
+#     # terminated(Bool): 모든 타일을 바로 방문하면 True
+#     # truncated(Bool): 최대 에피소드 길이 제한(max_episode_steps)이 초과되어서 강제 종료되어있으면 True -> max_step(env.spec.max_episode_steps)
+#     # info(Dict): 환경의 추가 정보
+#     observation, reward, terminated, truncated, _ = env.step(action.item())
 
-    reward = torch.tensor([reward], device=device)
-    episode_total_reward += reward
-    done = terminated or truncated
+#     reward = torch.tensor([reward], device=device)
+#     episode_total_reward += reward
+#     done = terminated or truncated
 
-    if terminated:
-      next_state = None
-      print("Finished the lap successfully!: ", t)
-    else:
-      next_state = torch.tensor(observation, dtype=torch.float32, device=device).unsqueeze(0)
+#     if terminated:
+#       next_state = None
+#       print("Finished the lap successfully!: ", t)
+#     else:
+#       next_state = torch.tensor(observation, dtype=torch.float32, device=device).unsqueeze(0)
 
-    agent._memory.push(state, action, next_state, reward)
-    state = next_state
-    agent.train()
+#     agent._memory.push(state, action, next_state, reward)
+#     state = next_state
+#     agent.train()
 
-    # action_counts.append(action.item())
-    # negative_reward_counter = negative_reward_counter + 1 if t > 100 and reward < 0 else 0
-    if done:
-      # print(f"terminated={terminated}, truncated={truncated}, \
-      #       negative_reward_counter={negative_reward_counter}, episode_total_reward={episode_total_reward.item()}, \
-      #       action_counts={Counter(action_counts)}, memory={agent._memory.__len__()}")
+#     # action_counts.append(action.item())
+#     # negative_reward_counter = negative_reward_counter + 1 if t > 100 and reward < 0 else 0
+#     if done:
+#       # print(f"terminated={terminated}, truncated={truncated}, \
+#       #       negative_reward_counter={negative_reward_counter}, episode_total_reward={episode_total_reward.item()}, \
+#       #       action_counts={Counter(action_counts)}, memory={agent._memory.__len__()}")
       
-      if agent._memory.__len__() >= 128:
-        episode_duration.append(t + 1)
-        rewards_per_episode.append(episode_total_reward)
-        ll = agent.get_loss()
-        average_episode_loss.append(sum(ll) / len(ll))
-      break
+#       if agent._memory.__len__() >= 128:
+#         episode_duration.append(t + 1)
+#         rewards_per_episode.append(episode_total_reward)
+#         ll = agent.get_loss()
+#         average_episode_loss.append(sum(ll) / len(ll))
+#       break
 
-  if episode % 10 == 0:
-    with open(f'{saved_file}/statistics.pkl', 'wb') as f:
-      pickle.dump((episode_duration, rewards_per_episode, average_episode_loss), f)
+#   if episode % 10 == 0:
+#     with open(f'{saved_file}/statistics.pkl', 'wb') as f:
+#       pickle.dump((episode_duration, rewards_per_episode, average_episode_loss), f)
 
-  if episode % 50 == 0:
-    agent.save_model(episode)
+#   if episode % 50 == 0:
+#     agent.save_model(episode)
 
-  if episode % C == 0:
-    agent.copy_weights()
+#   if episode % C == 0:
+#     agent.copy_weights()
 
-agent.save_model(episodes)
-with open(f'{saved_file}/statistics.pkl', 'wb') as f:
-  pickle.dump((episode_duration, rewards_per_episode, average_episode_loss), f)
+# agent.save_model(episodes)
+# with open(f'{saved_file}/statistics.pkl', 'wb') as f:
+#   pickle.dump((episode_duration, rewards_per_episode, average_episode_loss), f)
