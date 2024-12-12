@@ -15,7 +15,7 @@ class submission:
     model_path: str
     hyperparameters: dict[str, Any]
 
-submission_달려라하니 = submission(달려라하니.DQN, "./submissions/달려라_하니/model_weights_760_Run_HANI.pth", {
+submission_달려라하니 = submission(달려라하니.DQN, "./submissions/달려라_하니/actor_2200.pth", {
         "batch_size":64,        # 배치 크기를 32로 설정
 		"eps_start":1.0,        # 탐험 비율을 높게 시작
 		"eps_end":0.1,          # 탐험 비율의 하한값을 조금 높임
