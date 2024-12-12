@@ -28,7 +28,7 @@ submission_달려라하니 = submission(달려라하니.DQN, "./submissions/달�
 		"gamma":0.98,            # 감쇠 계수 증가로 보상의 미래 중요성을 조금 더 강조
         "lr":0.001})
 
-submission_F1_1024 = submission(F1_1024.DQN, "./submissions/F1_1024/model_weights_701.pth",{
+submission_F1_1024 = submission(F1_1024.DQN, "./submissions/F1_1024/model/basemodel_100_10_0.8_3_50_100/model_weights_701_reward_901.pth",{
     })
 submission_U1 = submission(U1.DQN, "./submissions/U1/model_weights_1000.pth", {
     })
