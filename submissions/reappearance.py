@@ -9,12 +9,16 @@ from .U3 import train_v2 as U3
 from .G1 import train as G1
 from .G2 import main as G2
 from .김성민 import train as 김성민
+from .template import main as template
 
 @dataclass
 class submission:
     model: type[object]
     model_path: str
     hyperparameters: dict[str, Any]
+
+submission_template = submission(template.DQN, "./submissions/template/model_weights_400.pth", {
+        })
 
 submission_달려라하니 = submission(달려라하니.DQN, "./submissions/달려라_하니/actor_2200.pth", {
         "batch_size":64,        # 배치 크기를 32로 설정
@@ -44,7 +48,10 @@ submission_G2 = submission(G2.DQN, "./submissions/G2/model_weights_3000.pth", {
 submission_김성민 = submission(김성민.DQN, "./submissions/김성민/model_weights_1000.pth", {
         })
 
+
+
 dict_reappearance = {
+    "template":submission_template,
     "달려라하니":submission_달려라하니,
     "F1_1024":submission_F1_1024,
     "U1":submission_U1,

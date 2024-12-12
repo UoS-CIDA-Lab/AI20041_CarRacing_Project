@@ -15,7 +15,7 @@ Term Project Page of UoS AI20041 Reinforcement Learning Course
 |   7   |  G1 (조건희, Aditi)  |   G   |  847  |  635  |  811  |  312  |  823  |     685     |
 |   8   | U3 (우승원, 우지성)  |   U   |  754  |  536  |  658  |  481  |  353  |     557     |
 |   -   |        빠르조        |   G   |       |       |       |       |       |   RETIRE    |
-|   -   |         TAs          |  TA   |       |       |       |       |       |      -      |
+|   -   |    Baseline (TAs)    |  TA   |  901  |  214  |  831  |  898  |  243  |     617     |
 
 
 Last updated: December 12, 2024, 0:57 KST
