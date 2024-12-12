@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-import importlib
 from typing import Any
 from .달려라_하니 import racing_with_out_transformer as 달려라하니
 from .F1_1024 import module as F1_1024
@@ -8,8 +7,9 @@ from .U2 import main as U2
 from .U3 import train_v2 as U3
 from .G1 import train as G1
 from .G2 import main as G2
-from .김성민 import train as 김성민
+from .김성민 import train as Y
 from .template import main as template
+from .빠르조 import main as 빠르조
 
 @dataclass
 class submission:
@@ -45,8 +45,11 @@ submission_G1 = submission(G1.DQN, "./submissions/G1/model_weights_1000.pth", {
 submission_G2 = submission(G2.DQN, "./submissions/G2/model_weights_3000.pth", {
         })
 
-submission_김성민 = submission(김성민.DQN, "./submissions/김성민/model_weights_1000.pth", {
+submission_Y = submission(Y.DQN, "./submissions/김성민/model_weights_1000.pth", {
         })
+
+submission_빠르조 = submission(빠르조.DQN, "./submissions/빠르조/model_weights_300.pth", {
+})
 
 
 
@@ -59,7 +62,8 @@ dict_reappearance = {
     "U3":submission_U3,
     "G1":submission_G1,
     "G2":submission_G2,
-    "Y":submission_김성민,
+    "Y":submission_Y,
+    "빠르조":submission_빠르조
 }
 
 
