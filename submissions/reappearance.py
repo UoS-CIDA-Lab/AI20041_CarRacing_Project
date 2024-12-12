@@ -5,6 +5,7 @@ from .달려라_하니 import racing_with_out_transformer as 달려라하니
 from .F1_1024 import module as F1_1024
 from .U1 import DQN_upgrade as U1
 from .U2 import main as U2
+from .U3 import train_v2 as U3
 from .G1 import train as G1
 from .G2 import main as G2
 from .김성민 import train as 김성민
@@ -31,6 +32,9 @@ submission_U1 = submission(U1.DQN, "./submissions/U1/model_weights_1000.pth", {
 submission_U2 = submission(U2.DQN, "./submissions/U2/model_weights_370.pth", {
         })
 
+submission_U3 = submission(U3.DQN, "./submissions/U3/model_weights_400.pth", {
+})
+
 submission_G1 = submission(G1.DQN, "./submissions/G1/model_weights_1000.pth", {
         })
 
@@ -45,9 +49,10 @@ dict_reappearance = {
     "F1_1024":submission_F1_1024,
     "U1":submission_U1,
     "U2":submission_U2,
+    "U3":submission_U3,
     "G1":submission_G1,
     "G2":submission_G2,
-    "김성민":submission_김성민,
+    "Y":submission_김성민,
 }
 
 

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Videos</title>
+    <style>
+        /* 영상 그리드 스타일 */
+        #video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* 3열로 설정 */
+            grid-gap: 20px;
+            /* 동영상 간격 */
+            margin-top: 20px;
+            width: 100%;
+            /* 그리드 너비를 화면 크기에 맞게 */
+            max-width: 1200px;
+            /* 그리드 최대 너비 */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .video-container {
+            text-align: center;
+            /* 동영상과 팀 이름 모두 중앙 정렬 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: auto;
+        }
+
+        .video-wrapper {
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+            /* 16:9 비율 유지 (100 / (16/9) = 56.25%) */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .video-player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* 비율 유지하며 가로 세로 꽉 차게 설정 */
+        }
+
+        .team-name {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            /* 동영상과 팀 이름 간 간격 설정 */
+            text-align: center;
+            /* 팀 이름을 중앙 정렬 */
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            #video-grid {
+                grid-template-columns: repeat(2, 1fr);
+                /* 화면이 작아지면 2열로 설정 */
+            }
+        }
+
+        @media (max-width: 480px) {
+            #video-grid {
+                grid-template-columns: 1fr;
+                /* 화면이 더 작아지면 1열로 설정 */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="video-grid"></div> <!-- 동영상이 동적으로 추가될 영역 -->
+
+    <!-- JavaScript -->
+    <script>
+        // 팀 이름 배열
+        const teams = [
+            "달려라하니", "Y", "F1_1024", "U1",
+            "U2", "G2", "G1", "빠르조", "U3"
+        ];
+
+        // 고정된 map 번호
+        const mapNumber = 2;
+
+        // 동영상을 렌더링할 기본 경로
+        const basePath = `maps/map_${mapNumber}/{team}/video.webm`;
+
+        // 동영상 컨테이너 추가
+        const videoGrid = document.getElementById("video-grid");
+        teams.forEach((team) => {
+            // 동영상 파일 경로 생성
+            const videoPath = basePath.replace("{team}", team);
+
+            // 동영상 HTML 동적 생성
+            const container = document.createElement("div");
+            container.className = "video-container";
+            container.dataset.path = videoPath;
+            container.dataset.team = team;
+
+            container.innerHTML = `
+                <div class="video-wrapper">
+                    <video class="video-player" controls>
+                        <source src="${videoPath}" type="video/webm">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <p class="team-name">${team}</p>
+            `;
+            videoGrid.appendChild(container);
+        });
+
+        // 모든 비디오를 동시에 실행
+        document.body.addEventListener("click", () => {
+            const videos = document.querySelectorAll(".video-player");
+            videos.forEach(video => {
+                video.currentTime = 0; // 동영상 시작 지점으로 설정
+                video.play();
+            });
+        });
+    </script>
+</body>
+
+</html>

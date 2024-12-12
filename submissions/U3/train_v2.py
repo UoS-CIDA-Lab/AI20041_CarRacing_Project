@@ -15,7 +15,7 @@ import random
 import math
 import pickle
 
-device = torch.device("mps" if torch.mps.is_available() else "cpu")
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def image_preprocessing(img):
   img = cv2.resize(img, dsize=(84, 84))
