@@ -3,7 +3,7 @@ import importlib
 from typing import Any
 from .달려라_하니 import racing_with_out_transformer as 달려라하니
 from .F1_1024 import module as F1_1024
-from .U1 import DDQN_new_play as U1
+from .U1 import DQN_upgrade as U1
 from .U2 import main as U2
 from .G1 import train as G1
 from .G2 import main as G2
@@ -25,7 +25,7 @@ submission_달려라하니 = submission(달려라하니.DQN, "./submissions/달�
 
 submission_F1_1024 = submission(F1_1024.DQN, "./submissions/F1_1024/model_weights_903.pth",{
     })
-submission_U1 = submission(U1.DDQN, "./submissions/U1/DDQN_new_model_weights_1000.pth", {
+submission_U1 = submission(U1.DQN, "./submissions/U1/model_weights_1000.pth", {
     })
 
 submission_U2 = submission(U2.DQN, "./submissions/U2/model_weights_370.pth", {
