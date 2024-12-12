@@ -21,7 +21,7 @@ from collections import Counter
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 saved_file = "./saved14"
-os.makedirs(saved_file, exist_ok=True)
+# os.makedirs(saved_file, exist_ok=True)
 
 def image_preprocessing(img):
   img = cv2.resize(img, dsize=(84, 84))
