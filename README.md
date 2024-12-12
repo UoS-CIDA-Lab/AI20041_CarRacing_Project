@@ -28,7 +28,7 @@ Term Project Page of UoS AI20041 Reinforcement Learning Course
 |   6   |       F1:1024        |   U   |  446  |  822  |  901  |  878  |  863   |     782     |
 |   7   | U2 (박정익, 이원모)  |   U   |  670  |  712  |  732  |  863  |  870   |     769     |
 |   8   | U3 (우승원, 우지성)  |   G   |  432  |  771  |  637  |  851  |  885   |     715     |
-|   -   |        빠르조        |   G   |  423  |  896  |  38   |  748  |  911   |     603     |
+|   9   |        빠르조        |   G   |  423  |  896  |  38   |  748  |  911   |     603     |
 |   -   |    Baseline (TAs)    |  TA   |       |       |       |  898  |  243   |     617     |
 
-Last updated: December 12, 2024, 16:22 KST
+Last updated: December 12, 2024, 18:01 KST
